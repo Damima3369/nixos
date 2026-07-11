@@ -6,7 +6,7 @@
     ./syncthing.nix
     ./tailscale.nix
     ./qbittorrent.nix
-    #./nextcloud.nix
+    ./nextcloud.nix
     #./rdp.nix
   ];
 }
