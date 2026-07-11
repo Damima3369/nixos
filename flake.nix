@@ -68,7 +68,7 @@
           pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
         };
         modules = [
-          ./acemagic-s1/configuration.nix
+          ./hosts/acemagic-s1/configuration.nix
           
           {
             nixpkgs.overlays = [ overlay-prismlauncher ];
