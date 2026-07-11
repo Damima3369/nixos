@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doublecmd>
+  <Tabs>
+    <OpenedTabs>
+      <Left>
+        <ActiveTab>1</ActiveTab>
+        <Tab>
+          <FileView Type="columns">
+            <Sortings>
+              <Sorting>
+                <Direction>1</Direction>
+                <Function>12</Function>
+              </Sorting>
+            </Sortings>
+            <History>
+              <Entry Active="True">
+                <FileSource Type="FileSystem"/>
+                <Paths>
+                  <Path Filename="..">/nix/store/87zg2rsl43vg3r1s6ykxpdcrv218ngwx-doublecmd-1.1.28/lib/doublecmd/</Path>
+                  <Path Filename="..">/nix/store/87zg2rsl43vg3r1s6ykxpdcrv218ngwx-doublecmd-1.1.28/lib/</Path>
+                  <Path Filename="..">/nix/store/87zg2rsl43vg3r1s6ykxpdcrv218ngwx-doublecmd-1.1.28/</Path>
+                  <Path Filename="..">/nix/store/</Path>
+                  <Path Filename="..">/nix/</Path>
+                  <Path Filename="etc">/</Path>
+                  <Path Filename="nixos">/etc/</Path>
+                  <Path Filename="modules">/etc/nixos/</Path>
+                  <Path Filename="kde">/etc/nixos/modules/</Path>
+                  <Path Filename="..">/etc/nixos/modules/kde/</Path>
+                </Paths>
+              </Entry>
+            </History>
+            <ColumnsView>
+              <ColumnsSet>Default</ColumnsSet>
+            </ColumnsView>
+          </FileView>
+        </Tab>
+        <Tab>
+          <FileView Type="columns">
+            <Sortings>
+              <Sorting>
+                <Direction>2</Direction>
+                <Function>7</Function>
+              </Sorting>
+            </Sortings>
+            <History>
+              <Entry Active="True">
+                <FileSource Type="FileSystem"/>
+                <Paths>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/lib/doublecmd/plugins/</Path>
+                  <Path Filename="default">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/lib/doublecmd/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/lib/doublecmd/default/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/lib/doublecmd/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/lib/</Path>
+                  <Path Filename="share">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/</Path>
+                  <Path Filename="applications">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/applications/</Path>
+                  <Path Filename="applications">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/applications/</Path>
+                  <Path Filename="doublecmd">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/</Path>
+                  <Path Filename="doc">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/doublecmd/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/doublecmd/doc/</Path>
+                  <Path Filename="highlighters">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/doublecmd/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/doublecmd/highlighters/</Path>
+                  <Path Filename="language">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/doublecmd/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/doublecmd/language/</Path>
+                  <Path Filename="pixmaps">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/doublecmd/</Path>
+                  <Path Filename="cursors">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/doublecmd/pixmaps/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/doublecmd/pixmaps/cursors/</Path>
+                  <Path Filename="dctheme">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/doublecmd/pixmaps/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/doublecmd/pixmaps/dctheme/</Path>
+                  <Path Filename="mainicon">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/doublecmd/pixmaps/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/doublecmd/pixmaps/mainicon/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/doublecmd/pixmaps/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/doublecmd/</Path>
+                  <Path Filename="icons">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/</Path>
+                  <Path Filename="hicolor">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/icons/</Path>
+                  <Path Filename="scalable">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/icons/hicolor/</Path>
+                  <Path Filename="apps">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/icons/hicolor/scalable/</Path>
+                  <Path Filename="doublecmd.svg">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/icons/hicolor/scalable/apps/</Path>
+                  <Path Filename="apps">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/icons/hicolor/scalable/</Path>
+                  <Path Filename="scalable">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/icons/hicolor/</Path>
+                  <Path Filename="hicolor">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/icons/</Path>
+                  <Path Filename="man">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/</Path>
+                  <Path Filename="man1">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/man/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/man/man1/</Path>
+                  <Path Filename="man1">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/man/</Path>
+                  <Path Filename="pixmaps">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/pixmaps/</Path>
+                  <Path Filename="polkit-1">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/polkit-1/</Path>
+                  <Path Filename="polkit-1">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/</Path>
+                  <Path Filename="actions">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/polkit-1/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/polkit-1/actions/</Path>
+                  <Path Filename="actions">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/polkit-1/</Path>
+                  <Path Filename="polkit-1">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/share/</Path>
+                  <Path Filename="bin">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/</Path>
+                  <Path Filename="..">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/bin/</Path>
+                  <Path Filename="bin">/nix/store/ddmyjfnz3dgirvfmnixibnzhgsy3g9kx-doublecmd-1.1.28/</Path>
+                </Paths>
+              </Entry>
+            </History>
+            <ColumnsView>
+              <ColumnsSet>Default</ColumnsSet>
+            </ColumnsView>
+          </FileView>
+        </Tab>
+      </Left>
+      <Right>
+        <ActiveTab>0</ActiveTab>
+        <Tab>
+          <FileView Type="columns">
+            <Sortings>
+              <Sorting>
+                <Direction>1</Direction>
+                <Function>12</Function>
+              </Sorting>
+            </Sortings>
+            <History>
+              <Entry Active="True">
+                <FileSource Type="FileSystem"/>
+                <Paths>
+                  <Path Filename="..">/nix/store/87zg2rsl43vg3r1s6ykxpdcrv218ngwx-doublecmd-1.1.28/lib/doublecmd/</Path>
+                  <Path Filename="..">/home/damima/.config/doublecmd/</Path>
+                </Paths>
+              </Entry>
+            </History>
+            <ColumnsView>
+              <ColumnsSet>Default</ColumnsSet>
+            </ColumnsView>
+          </FileView>
+        </Tab>
+      </Right>
+    </OpenedTabs>
+  </Tabs>
+</doublecmd>

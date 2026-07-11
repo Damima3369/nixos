@@ -1,0 +1,4 @@
+flake.lock
+.stfolder
+.flake.nix.kate-swp
+config_dump.txt
