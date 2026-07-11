@@ -23,8 +23,8 @@ REMOTE="origin"
 ACTION="switch"         # switch | build | dry-run | iso
 FORCE_GIT=false
 NO_SUDO=false
-HOST="acemagic-s1"      # <- по умолчанию, как в вашем flake.nix
-FLAKE_PATH="."          # локальный flake (корень репозитория)
+HOST="acemagic-s1"      
+FLAKE_PATH="."          
 BRANCH=""
 
 usage() {
@@ -54,192 +54,126 @@ EOF
   exit 1
 }
 
-# Prompt helper: ask to retry with --force-git. Empty input = YES.
-prompt_force() {
-  local prompt_msg="$1"
-  local ans
-  read -r -p "$prompt_msg [Enter/д/да/y/yes = да, n/no/н/нет = нет]: " ans
-  ans="$(echo "${ans:-}" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')"
-  if [ -z "$ans" ]; then
-    FORCE_GIT=true
-    return 0
-  fi
-  case "$ans" in
-    д|да|y|yes) FORCE_GIT=true; return 0;;
-    n|no|н|нет) return 1;;
-    *) 
-      # если непонятный ввод — считаем отказом
-      return 1
-      ;;
-  esac
-}
-
-# parse args
-if [ $# -eq 0 ]; then
-  # ничего — оставляем BRANCH пустой, дальше автопополнение
-  :
-fi
-
+# Parse args (оставим для совместимости)
 while [ $# -gt 0 ]; do
   case "$1" in
-    --action)
-      ACTION="$2"; shift 2;;
-    --host)
-      HOST="$2"; shift 2;;
-    --remote)
-      REMOTE="$2"; shift 2;;
-    --no-sudo)
-      NO_SUDO=true; shift;;
-    --force-git)
-      FORCE_GIT=true; shift;;
-    --branch|-b)
-      BRANCH="$2"; shift 2;;
-    -h|--help)
-      usage;;
-    -*)
-      # возможно позиционный - ветка указан как первый arg без ключа
-      echo "Неизвестный флаг: $1"
-      usage;;
-    *)
-      # позиционный аргумент: если BRANCH ещё не задан — присвоим
-      if [ -z "$BRANCH" ]; then
-        BRANCH="$1"
-        shift
-      else
-        echo "Излишний позиционный аргумент: $1"
-        usage
-      fi
-      ;;
+    --action) ACTION="$2"; shift 2;;
+    --host) HOST="$2"; shift 2;;
+    --remote) REMOTE="$2"; shift 2;;
+    --no-sudo) NO_SUDO=true; shift;;
+    --force-git) FORCE_GIT=true; shift;;
+    --branch|-b) BRANCH="$2"; shift 2;;
+    -h|--help) usage;;
+    *) shift;;
   esac
 done
 
-# Ensure flake exists
 if [ ! -f "${FLAKE_PATH}/flake.nix" ]; then
-  echo "Ошибка: flake.nix не найден(а) в ${FLAKE_PATH}. Запустите скрипт из корня репозитория с flake.nix или измените FLAKE_PATH."
+  echo "Ошибка: flake.nix не найден в ${FLAKE_PATH}."
   exit 2
 fi
 
 cd "${FLAKE_PATH}"
 
-# Check git repo
 if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   echo "Текущий каталог не git-репозиторий."
   exit 3
 fi
 
-# If branch not specified, detect current branch
+# Определяем ветку
+CURRENT_BRANCH="$(git symbolic-ref --quiet --short HEAD 2>/dev/null || git rev-parse --abbrev-ref HEAD 2>/dev/null || true)"
 if [ -z "$BRANCH" ]; then
-  # try to get symbolic ref short name
-  BRANCH="$(git symbolic-ref --quiet --short HEAD 2>/dev/null || true)"
-  if [ -z "$BRANCH" ]; then
-    # fallback to abbrev-ref (could return HEAD on detached)
-    BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || true)"
-  fi
-  if [ -z "$BRANCH" ] || [ "$BRANCH" = "HEAD" ]; then
-    echo "Не удалось определить текущую ветку (detached HEAD). Укажите ветку явно: --branch <name>"
-    exit 7
-  fi
-  echo ">>> Ветка не указана: используем текущую ветку '$BRANCH'"
+  BRANCH="$CURRENT_BRANCH"
 fi
 
-echo ">>> Fetching remotes ($REMOTE)..."
-git fetch "${REMOTE}" --prune || {
-  echo "Предупреждение: не удалось выполнить git fetch ${REMOTE} — проверьте сеть/доступ."
-}
-
-# Ensure working tree cleanliness unless forced
-if ! git diff --quiet --ignore-submodules --; then
-  echo "Рабочее дерево содержит незакоммиченные изменения:"
-  git status --porcelain
-  if ! $FORCE_GIT; then
-    if prompt_force "Хотите восстановить состояние в соответствии с ${REMOTE}/${BRANCH} (будет выполняться hard reset) и продолжить?"; then
-      echo ">>> Продолжаем с --force-git"
-    else
-      echo "Отмена: закоммитьте/стэшните изменения или запустите с --force-git."
-      exit 4
-    fi
-  else
-    echo ">>> FORCE_GIT задан: выполню hard reset."
-  fi
+# --- УМНАЯ ПРОВЕРКА ЛОКАЛЬНЫХ ИЗМЕНЕНИЙ ---
+LOCAL_CHANGES=false
+if ! git diff --quiet --no-ext-diff 2>/dev/null || git status --porcelain | grep -q "^??"; then
+  LOCAL_CHANGES=true
 fi
 
-# Switch/create branch and update
-# If local branch exists, checkout it and update (ff or hard reset if forced)
-if git show-ref --verify --quiet "refs/heads/${BRANCH}"; then
-  echo ">>> Переключаюсь на локальную ветку ${BRANCH}"
-  git checkout "${BRANCH}" || { echo "Ошибка: git checkout ${BRANCH}"; exit 8; }
+SHOULD_SYNC=false
 
-  if $FORCE_GIT; then
-    echo ">>> Hard reset к ${REMOTE}/${BRANCH}"
-    git reset --hard "${REMOTE}/${BRANCH}" || { echo "Ошибка: git reset --hard ${REMOTE}/${BRANCH}"; exit 9; }
-  else
-    echo ">>> Обновляю локальную ветку ${BRANCH} (fast-forward) от ${REMOTE}/${BRANCH}"
-    if git merge --ff-only "${REMOTE}/${BRANCH}"; then
-      echo ">>> Fast-forward успешно выполнен."
-    else
-      echo "Не удалось выполнить fast-forward для ${BRANCH} от ${REMOTE}/${BRANCH}."
-      if prompt_force "Повторить операцию с --force-git (hard reset к ${REMOTE}/${BRANCH})?"; then
-        echo ">>> Выполняю hard reset к ${REMOTE}/${BRANCH}"
-        git reset --hard "${REMOTE}/${BRANCH}" || { echo "Ошибка: git reset --hard ${REMOTE}/${BRANCH}"; exit 9; }
-      else
-        echo "Отмена: не выполнено обновление ветки."
-        exit 5
-      fi
-    fi
-  fi
-
+if [ "$LOCAL_CHANGES" = true ]; then
+  echo "⚠️  Хозяин, я обнаружил локальные правки или новые файлы в репозитории."
+  read -r -p "Хотите стянуть обновления из облака перед сборкой? [д/Н]: " ans
+  ans="$(echo "${ans:-}" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')"
+  case "$ans" in
+    д|да|y|yes)
+      SHOULD_SYNC=true
+      ;;
+    *)
+      echo ">>> Понял, облако игнорируем. Собираем локальные наработки..."
+      # Регистрируем новые файлы в индексе гит, чтобы Flakes их увидели
+      git add -N . 2>/dev/null || true
+      ;;
+  esac
 else
-  # локальной ветки нет — попробуем создать отслеживающую ветку с remote
-  if git ls-remote --exit-code --heads "${REMOTE}" "${BRANCH}" >/dev/null 2>&1; then
-    echo ">>> Создаю локальную ветку ${BRANCH}, отслеживающую ${REMOTE}/${BRANCH}"
-    git checkout -b "${BRANCH}" --track "${REMOTE}/${BRANCH}" || { echo "Ошибка: git checkout -b --track"; exit 6; }
+  # Если всё чисто — синк включается автоматически без лишних вопросов
+  SHOULD_SYNC=true
+fi
+
+# --- БЛОК СИНХРОНИЗАЦИИ ---
+if [ "$SHOULD_SYNC" = true ]; then
+  if [ "$LOCAL_CHANGES" = true ]; then
+    # Сценарий 1: У пользователя есть правки, но он принудительно захотел обновиться
+    echo ">>> Подключаюсь к серверу ($REMOTE)..."
+    if git fetch "${REMOTE}" --prune; then
+      echo "❌ Внимание! Для чистой синхронизации локальные правки будут стёрты (hard reset)."
+      read -r -p "Вы уверены, что хотите затереть локальные изменения ради версии из облака? [д/Н]: " confirm
+      if [[ "$confirm" =~ ^[yYдД]$ ]]; then
+        if [ "$CURRENT_BRANCH" != "$BRANCH" ]; then git checkout "${BRANCH}" || exit 8; fi
+        git reset --hard "${REMOTE}/${BRANCH}" || exit 9
+      else
+        echo "Отмена: ухожу на локальную сборку без обновления."
+        git add -N . 2>/dev/null || true
+      fi
+    else
+      echo "⚠️  Не удалось достучаться до GitHub — собираю локальную версию."
+      git add -N . 2>/dev/null || true
+    fi
   else
-    echo "Ветка ${BRANCH} не найдена ни локально, ни в ${REMOTE}."
-    echo "Укажите существующую ветку или создайте её в удалённом репозитории."
-    exit 6
+    # Сценарий 2: Локально всё чисто, проверяем обновления молча и безболезненно
+    echo ">>> Проверяю обновления в облаке..."
+    if git fetch "${REMOTE}" --prune 2>/dev/null; then
+      if [ "$CURRENT_BRANCH" != "$BRANCH" ]; then
+        git checkout "${BRANCH}" 2>/dev/null || true
+      fi
+      if git merge --ff-only "${REMOTE}/${BRANCH}" 2>/dev/null; then
+        echo "✨ Найдено новое в облаке, успешно обновился!"
+      else
+        echo "ℹ️  Обновлений нет или автоматический fast-forward невозможен. Собираю текущую копию."
+      fi
+    else
+      echo "⚠️  Не удалось проверить облако (нет сети или GitHub недоступен). Собираю локальную версию."
+    fi
   fi
 fi
 
-echo ">>> Текущий коммит:"
+echo ">>> Текущий коммит-база:"
 git --no-pager log -1 --oneline
 
-# Build / switch
+# --- СБОРКА СИСТЕМЫ ---
 FLAKE_REF="${FLAKE_PATH}#${HOST}"
 case "$ACTION" in
   dry-run)
-    echo "DRY-RUN: команда, которую будет выполнена:"
-    if $NO_SUDO; then
-      echo "nixos-rebuild switch --flake ${FLAKE_REF}"
-    else
-      echo "sudo nixos-rebuild switch --flake ${FLAKE_REF}"
-    fi
+    echo "nixos-rebuild switch --flake ${FLAKE_REF}"
     exit 0
     ;;
   build)
     echo ">>> Выполняю: nixos-rebuild build --flake ${FLAKE_REF}"
     nixos-rebuild build --flake "${FLAKE_REF}"
-    echo ">>> Готово: сборка в /nix/var/nix/profiles/system-*"
     exit 0
     ;;
   switch)
-    if $NO_SUDO; then
-      CMD=(nixos-rebuild switch --flake "${FLAKE_REF}")
-    else
-      CMD=(sudo nixos-rebuild switch --flake "${FLAKE_REF}")
-    fi
-    echo ">>> Выполняю: ${CMD[*]}"
+    CMD=(sudo nixos-rebuild switch --flake "${FLAKE_REF}")
+    echo ">>> Запускаю сборку: ${CMD[*]}"
     "${CMD[@]}"
-    echo ">>> nixos-rebuild выполнен."
+    echo ">>> Всё готово, конфигурация успешно применена!"
     exit 0
     ;;
   iso)
-    echo ">>> Выполняю: nix build ${FLAKE_REF}"
     nix build "${FLAKE_REF}"
-    echo ">>> Готово: сборка в result/iso"
     exit 0
-    ;;
-  *)
-    echo "Неизвестное действие: ${ACTION}"
-    usage
     ;;
 esac
