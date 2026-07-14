@@ -28,7 +28,6 @@
       p7zip
       rar
       unrar
-      usbutils
       f3
       pay-respects
 
@@ -41,6 +40,7 @@
       gparted
       gnome-disk-utility
       kdePackages.partitionmanager
+      usbutils
 
       # --- Офис, Заметки и Обучение ---
       libreoffice-fresh
