@@ -13,16 +13,34 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/10f614ee-4fb6-4e7a-b8c5-550ffb44ccc8";
-      fsType = "ext4";
-    };
+  #fileSystems."/" =
+  #  { device = "/dev/disk/by-uuid/10f614ee-4fb6-4e7a-b8c5-550ffb44ccc8";
+  #    fsType = "ext4";
+  #  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/DD9F-1AE0";
+  fileSystems = {
+    "/boot" = { 
+      device = "/dev/disk/by-uuid/DD9F-1AE0";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
+    "/" = {
+      device = "/dev/disk/by-uuid/96ab00a6-bae4-4878-b6c9-0e2f8cde12c4";
+      fsType = "btrfs";
+      options = [ "subvol=@" "compress=zstd:3" "noatime" ];
+    };
+    "/home" = {
+      device = "/dev/disk/by-uuid/96ab00a6-bae4-4878-b6c9-0e2f8cde12c4";
+      fsType = "btrfs";
+      options = [ "subvol=@home" "compress=zstd:3" "noatime" ];
+    };
+    "/nix" = {
+      device = "/dev/disk/by-uuid/96ab00a6-bae4-4878-b6c9-0e2f8cde12c4";
+      fsType = "btrfs";
+      options = [ "subvol=@nix" "compress=zstd:3" "noatime" ];
+    };
+  };
+
 
   swapDevices = [ ];
 
