@@ -7,7 +7,7 @@
                 {
                     command = "ALL" ;
                     options = [ "NOPASSWD" ];
-                }  # Без пароля для всех команд
+                }
             ];
         }
     ];

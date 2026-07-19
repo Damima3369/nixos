@@ -7,12 +7,18 @@
         ./ssh.nix
         ./fish.nix
         ./doublecmd/doublecmd.nix
-        ./obs-studio/obs.nix
-        ./waydroid.nix
-        ./steam.nix
-        ./virtualbox.nix
-        ./veracrypt.nix
+        ./obs.nix
+        ./cryptography/veracrypt.nix
+        ./cryptography/gnupg.nix
         ./diskpartition.nix
+        ./fonts.nix
+        ./shell.nix
+        ./virtualization.nix
+        ./kde.nix
+        ./appimage.nix
+        ./nix-ld.nix
+        ./throne.nix
+        ./games.nix
     ];
 
   environment.systemPackages = let
@@ -31,7 +37,6 @@
       rar
       unrar
       f3
-      pay-respects
 
       # --- Разработка и Скрипты ---
       vscode
@@ -56,87 +61,15 @@
       google-chrome
       discord
       thunderbird
-      opensnitch-ui
-
-      # --- Специфичный софт KDE ---
-      kdePackages.krdc
-      kdePackages.kompare
-      kdePackages.kleopatra
+      #opensnitch-ui
 
       # --- Интеграция, Виртуализация и Смартфоны ---
       scrcpy
       android-tools
-
-      # --- Игры ---
-      prismlauncher
-      jdk25
     ];
     
     unstable = with pkgs-unstable; [
       ayugram-desktop
     ];
   in stable ++ unstable;
-
-  programs = {
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs; [ zlib libgcc ];
-    };
-    throne = {
-      enable = true;
-      tunMode.enable = true;
-    };
-    appimage = {
-      enable = true;
-      binfmt = true;
-    };
-    gnupg.agent = {
-      enable = true;
-      pinentryPackage = pkgs.pinentry-qt;
-    };
-    zsh = {
-      enable = true;
-      interactiveShellInit = ''
-        setopt CORRECTALL
-        eval "$(pay-respects zsh)"
-        alias fuck=f
-      '';
-    };
-    command-not-found.enable = true;
-    bash.interactiveShellInit = ''
-      eval "$(pay-respects bash)"
-      alias fuck=f
-    '';
-    fish = {
-      enable = true;
-      interactiveShellInit = ''
-        pay-respects fish | source
-        alias fuck=f
-      '';
-    };
-  };
-
-  #services = {
-  #  opensnitch.enable = true;
-  #};
-
-  virtualisation.docker = {
-    enable = true;
-    package = pkgs.docker_29;
-  };
-
-  fonts = {
-    packages = with pkgs; [
-        corefonts     # Microsoft core fonts
-        vista-fonts   # Microsoft ClearType fonts
-        apple-emoji.packages.${pkgs.stdenv.hostPlatform.system}.default   # Apple Emoji font
-    ];
-
-    fontconfig = {
-      enable = true;
-      defaultFonts = {
-        emoji = [ "Apple Color Emoji" ];
-      };
-    };
-  };  
 }
