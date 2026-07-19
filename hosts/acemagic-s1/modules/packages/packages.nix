@@ -11,6 +11,8 @@
         ./waydroid.nix
         ./steam.nix
         ./virtualbox.nix
+        ./veracrypt.nix
+        ./diskpartition.nix
     ];
 
   environment.systemPackages = let
@@ -35,12 +37,6 @@
       vscode
       python314
       #pipx
-
-      # --- Работа с дисками и ФС ---
-      gparted
-      gnome-disk-utility
-      kdePackages.partitionmanager
-      usbutils
 
       # --- Офис, Заметки и Обучение ---
       libreoffice-fresh
