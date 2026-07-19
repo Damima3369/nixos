@@ -12,11 +12,11 @@
             remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
             dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
             localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-            extraPackages = with pkgs; [ jdk ];
+            extraPackages = [ pkgs.jdk ];
         };
         java = {
             enable = true;
-            packages = with pkgs; [ jdk25 ];
+            package = pkgs.jdk25;
             binfmt = true;
         };
     };
