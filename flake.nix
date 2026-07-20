@@ -22,6 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     apple-emoji.url = "github:oxcl/nix-flake-apple-emoji";
+    pineconemc.url = "github:Damima3369/PineconeMC";
   };
 
   outputs = {
@@ -34,6 +35,7 @@
     nixos-generators, 
     nixpkgs-prismlauncher-9-4, 
     apple-emoji, 
+    pineconemc,
     ... 
   }:
 
@@ -59,6 +61,7 @@
         '';
       };
     };
+
   in
   {
     nixosConfigurations = {
@@ -71,7 +74,7 @@
           ./hosts/acemagic-s1/configuration.nix
           
           {
-            nixpkgs.overlays = [ overlay-prismlauncher ];
+            nixpkgs.overlays = [ overlay-prismlauncher pineconemc.overlays.default ];
           }
 
           home-manager.nixosModules.home-manager {

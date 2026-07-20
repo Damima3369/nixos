@@ -25,5 +25,6 @@
         protonup-qt
         lutris
         prismlauncher
+        pineconemc
     ];
 }
