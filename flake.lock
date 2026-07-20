@@ -139,6 +139,40 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1784356753,
+        "narHash": "sha256-12KrbMiWLcf8m7pCvAtZh1ZrgF85ZXDXvfR/fWTKy84=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "61b7c44c4073f0b827768aff0049561b5110ea5a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "pineconemc": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1784556574,
+        "narHash": "sha256-Dyto5qgxKpinDKZo4LYCYFG87a8sd6Tv5ozPJLcH/xE=",
+        "owner": "Damima3369",
+        "repo": "PineconeMC",
+        "rev": "8723abc901e22daa14ff2337a57fafeff80c26ba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Damima3369",
+        "repo": "PineconeMC",
+        "type": "github"
+      }
+    },
     "plasma-manager": {
       "inputs": {
         "home-manager": [
@@ -170,6 +204,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-prismlauncher-9-4": "nixpkgs-prismlauncher-9-4",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "pineconemc": "pineconemc",
         "plasma-manager": "plasma-manager",
         "secret": "secret"
       }

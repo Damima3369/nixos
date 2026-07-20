@@ -22,7 +22,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     apple-emoji.url = "github:oxcl/nix-flake-apple-emoji";
-    pineconemc.url = "github:Damima3369/PineconeMC";
+    pineconemc = {
+      url = "github:Damima3369/PineconeMC";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
