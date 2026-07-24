@@ -49,6 +49,7 @@
 
   let
     system = "x86_64-linux";
+    system-aarch64 = "aarch64-linux";
 
     overlay-prismlauncher = final: prev: {
       prismlauncher = let
@@ -97,6 +98,19 @@
             home-manager.sharedModules = [ 
               plasma-manager.homeModules.plasma-manager 
             ];
+          }
+        ];
+      };
+      orangepi4 = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit secret apple-emoji;
+          pkgs-unstable = nixpkgs-unstable.legacyPackages.${system-aarch64};
+        };
+        modules = [
+          ./hosts/orangepi4/configuration.nix
+          nix-index-database.nixosModules.nix-index
+          { 
+            programs.nix-index-database.comma.enable = true; 
           }
         ];
       };

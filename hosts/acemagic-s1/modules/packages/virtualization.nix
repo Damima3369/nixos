@@ -16,4 +16,5 @@
   users.extraGroups.vboxusers.members = [ "damima" ];
   environment.systemPackages = with pkgs; [ wl-clipboard waydroid-helper distrobox ];
   networking.firewall.trustedInterfaces = [ "waydroid0" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }
