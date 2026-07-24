@@ -39,6 +39,26 @@
         "type": "github"
       }
     },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784440659,
+        "narHash": "sha256-Q5kNLlWngt7TaIIZoxDKWMHjiSaNRVqr70FqWCRRfr4=",
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "rev": "4f8d52a3598b0dc7db7a5e7b419e3edd9d1ecfdb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
     "nixlib": {
       "locked": {
         "lastModified": 1736643958,
@@ -186,6 +206,7 @@
       "inputs": {
         "apple-emoji": "apple-emoji",
         "home-manager": "home-manager",
+        "nix-index-database": "nix-index-database",
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-prismlauncher-9-4": "nixpkgs-prismlauncher-9-4",

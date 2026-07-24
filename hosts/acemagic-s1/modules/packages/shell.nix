@@ -13,7 +13,6 @@
       alias fuck=f
     '';
     };
-    command-not-found.enable = true;
     bash.interactiveShellInit = ''
       eval "$(pay-respects bash)"
       alias fuck=f

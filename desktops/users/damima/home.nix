@@ -14,6 +14,13 @@
 
   programs.home-manager.enable = true;
 
+  programs.nix-index = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableFishIntegration = true;
+  };
+
   programs.git = {
     enable = true;
     settings = {

@@ -1,5 +1,4 @@
 { config, pkgs, lib, pkgs-unstable, inputs, winapps, apple-emoji, ... }:
-
 {
     nixpkgs.config.allowUnfree = true;
 

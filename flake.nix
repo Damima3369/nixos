@@ -26,6 +26,10 @@
       url = "github:Damima3369/PineconeMC";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -39,6 +43,7 @@
     nixpkgs-prismlauncher-9-4, 
     apple-emoji, 
     pineconemc,
+    nix-index-database,
     ... 
   }:
 
@@ -78,6 +83,11 @@
           
           {
             nixpkgs.overlays = [ overlay-prismlauncher pineconemc.overlays.default ];
+          }
+          
+          nix-index-database.nixosModules.nix-index
+          { 
+            programs.nix-index-database.comma.enable = true; 
           }
 
           home-manager.nixosModules.home-manager {
