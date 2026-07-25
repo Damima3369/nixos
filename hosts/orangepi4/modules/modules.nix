@@ -31,7 +31,7 @@
   services = {
     home-assistant = {
       enable = true;
-      configDir = "/var/lib/homeassistant";
+      configDir = "/var/lib/hass";
       configWritable = true;
       extraComponents = [
         "isal"
