@@ -36,11 +36,14 @@
       ];
       config = {
         default_config = {};
+        http = {
+        };
       };
     };
   };
   networking.firewall.allowedTCPPorts = [
     config.services.home-assistant.config.http.server_port
+    8123
   ];
 
   users.defaultUserShell = pkgs.fish;
