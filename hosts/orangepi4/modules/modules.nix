@@ -31,6 +31,8 @@
   services = {
     home-assistant = {
       enable = true;
+      configDir = "/var/lib/homeassistant";
+      configWritable = true;
       extraComponents = [
         "isal"
       ];
@@ -39,11 +41,32 @@
         http = {
         };
       };
+
+      tailscale = {
+        enable = true;
+      };
+      mosquitto = {
+        enable = true;
+        listeners = [{
+          acl = [ "pattern readwrite #" ];
+          settings.allow_anonymous = true;
+        }];
+      };
+      zigbee2mqtt = {
+        enable = false;
+        settings = {
+          homeassistant = true;
+          mqtt.server = "mqtt://localhost:1883";
+          serial.port = "/dev/ttyUSB0";
+        };
+      };
     };
   };
+
   networking.firewall.allowedTCPPorts = [
     config.services.home-assistant.config.http.server_port
     8123
+
   ];
 
   users.defaultUserShell = pkgs.fish;
