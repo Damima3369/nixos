@@ -101,6 +101,8 @@
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
+      sandbox = "relaxed";
+      filter-syscalls = false;
     };
     optimise = {
       automatic = true;

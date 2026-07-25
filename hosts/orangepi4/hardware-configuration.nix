@@ -16,6 +16,12 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/13e68f68-b1fa-40b7-9aef-0ad6f64cb955";
       fsType = "ext4";
+      options = [ 
+        "noatime"
+        "commit=60"
+        "barrier=1"
+        "errors=remount-ro"
+      ];
     };
 
   swapDevices = [ ];
