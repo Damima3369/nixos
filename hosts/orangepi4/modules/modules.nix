@@ -41,7 +41,8 @@
         http = {
         };
       };
-
+    };
+    
     tailscale = {
       enable = true;
     };
@@ -59,7 +60,6 @@
         mqtt.server = "mqtt://localhost:1883";
         serial.port = "/dev/ttyUSB0";
       };
-    };
     };
   };
 
