@@ -30,7 +30,7 @@
 
   services = {
     home-assistant = {
-      enable = false;
+      enable = true;
       extraComponents = [
         "isal"
       ];
