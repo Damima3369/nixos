@@ -36,13 +36,13 @@
       ];
       config = {
         default_config = {};
-      }
+      };
     };
   };
   networking.firewall.allowedTCPPorts = [
     config.services.home-assistant.config.http.server_port
   ];
-  
+
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
 }
