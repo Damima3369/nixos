@@ -42,24 +42,24 @@
         };
       };
 
-      tailscale = {
-        enable = true;
+    tailscale = {
+      enable = true;
+    };
+    mosquitto = {
+      enable = true;
+      listeners = [{
+        acl = [ "pattern readwrite #" ];
+        settings.allow_anonymous = true;
+      }];
+    };
+    zigbee2mqtt = {
+      enable = false;
+      settings = {
+        homeassistant = true;
+        mqtt.server = "mqtt://localhost:1883";
+        serial.port = "/dev/ttyUSB0";
       };
-      mosquitto = {
-        enable = true;
-        listeners = [{
-          acl = [ "pattern readwrite #" ];
-          settings.allow_anonymous = true;
-        }];
-      };
-      zigbee2mqtt = {
-        enable = false;
-        settings = {
-          homeassistant = true;
-          mqtt.server = "mqtt://localhost:1883";
-          serial.port = "/dev/ttyUSB0";
-        };
-      };
+    };
     };
   };
 
