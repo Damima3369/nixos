@@ -1,10 +1,10 @@
-{ config, pkgs, lib, pkgs-unstable, inputs, winapps, apple-emoji, ... }:
+{ pkgs, apple-emoji, ... }:
 {
   fonts = {
     packages = with pkgs; [
-        corefonts     # Microsoft core fonts
-        vista-fonts   # Microsoft ClearType fonts
-        apple-emoji.packages.${pkgs.stdenv.hostPlatform.system}.default   # Apple Emoji font
+      corefonts # Microsoft core fonts
+      vista-fonts # Microsoft ClearType fonts
+      apple-emoji.packages.${pkgs.stdenv.hostPlatform.system}.default # Apple Emoji font
     ];
 
     fontconfig = {
@@ -12,6 +12,6 @@
       defaultFonts = {
         emoji = [ "Apple Color Emoji" ];
       };
-    };  
+    };
   };
 }

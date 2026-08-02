@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   home.stateVersion = "25.11";
@@ -24,7 +24,7 @@
   programs.git = {
     enable = true;
     settings = {
-      user.name  = "Damima";
+      user.name = "Damima";
       user.email = "damima3369@gmail.com";
     };
   };
@@ -36,7 +36,7 @@
     panels = [
       {
         location = "bottom";
-        height = 44;  # Стандарт, измени если нужно
+        height = 44; # Стандарт, измени если нужно
 
         widgets = [
           # Kickoff (меню)
@@ -49,8 +49,8 @@
           {
             iconTasks = {
               launchers = [
-                "preferred://browser"  # Авто браузер
-                "applications:com.ayugram.desktop"  # Или полный путь, если не в стандартном месте
+                "preferred://browser" # Авто браузер
+                "applications:com.ayugram.desktop" # Или полный путь, если не в стандартном месте
                 "applications:doublecmd.desktop"
               ];
             };
@@ -75,21 +75,30 @@
         ];
       }
     ];
-    
+
     workspace = {
       lookAndFeel = "org.kde.breezedark.desktop";
       colorScheme = "BreezeDark";
       iconTheme = "breeze-dark";
-      cursor.theme = "breeze_cursors";  # Опционально
+      cursor.theme = "breeze_cursors"; # Опционально
       wallpaperSlideShow = {
-        path = "/run/media/damima/SSD_NTFS/Разобрано/Дом/Обои/слайд-шоу/";
+        path = "/run/media/damima/Data/Разобрано/Дом/Обои/слайд-шоу/";
         interval = 60;
       };
-    };  
+    };
 
     kwin.titlebarButtons = {
-      left = [ "more-window-actions" "keep-above-windows" "on-all-desktops" ];
-      right = [ "help" "minimize" "maximize" "close" ];
+      left = [
+        "more-window-actions"
+        "keep-above-windows"
+        "on-all-desktops"
+      ];
+      right = [
+        "help"
+        "minimize"
+        "maximize"
+        "close"
+      ];
     };
 
     configFile = {

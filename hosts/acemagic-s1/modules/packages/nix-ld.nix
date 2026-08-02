@@ -1,9 +1,12 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   programs = {
     nix-ld = {
       enable = true;
-      libraries = with pkgs; [ zlib libgcc ];
+      libraries = with pkgs; [
+        zlib
+        libgcc
+      ];
     };
   };
 }

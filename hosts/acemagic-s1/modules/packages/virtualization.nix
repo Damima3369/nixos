@@ -1,4 +1,4 @@
-{ config, pkgs, lib, pkgs-unstable, inputs, winapps, apple-emoji, ... }:
+{ pkgs, ... }:
 {
   virtualisation = {
     docker = {
@@ -14,7 +14,11 @@
     };
   };
   users.extraGroups.vboxusers.members = [ "damima" ];
-  environment.systemPackages = with pkgs; [ wl-clipboard waydroid-helper distrobox ];
+  environment.systemPackages = with pkgs; [
+    wl-clipboard
+    waydroid-helper
+    distrobox
+  ];
   networking.firewall.trustedInterfaces = [ "waydroid0" ];
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }

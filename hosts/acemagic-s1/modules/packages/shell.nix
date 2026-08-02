@@ -1,4 +1,4 @@
-{ config, pkgs, lib, pkgs-unstable, inputs, winapps, apple-emoji, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     pay-respects
@@ -6,12 +6,12 @@
 
   programs = {
     zsh = {
-    enable = true;
-    interactiveShellInit = ''
-      setopt CORRECTALL
-      eval "$(pay-respects zsh)"
-      alias fuck=f
-    '';
+      enable = true;
+      interactiveShellInit = ''
+        setopt CORRECTALL
+        eval "$(pay-respects zsh)"
+        alias fuck=f
+      '';
     };
     bash.interactiveShellInit = ''
       eval "$(pay-respects bash)"

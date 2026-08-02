@@ -1,14 +1,14 @@
-{ config, pkgs, ... }:
+{ ... }:
 {
-    security.sudo.extraRules = [
+  security.sudo.extraRules = [
+    {
+      users = [ "damima" ];
+      commands = [
         {
-            users = [ "damima" ];
-            commands = [
-                {
-                    command = "ALL" ;
-                    options = [ "NOPASSWD" ];
-                }
-            ];
+          command = "ALL";
+          options = [ "NOPASSWD" ];
         }
-    ];
+      ];
+    }
+  ];
 }

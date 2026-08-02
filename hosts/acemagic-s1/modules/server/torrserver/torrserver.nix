@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     ffmpeg-full
-    (pkgs.callPackage (import ./torrserver_pkg.nix) {})
+    (pkgs.callPackage (import ./torrserver_pkg.nix) { })
   ];
 
   systemd.services.torrserver = {
@@ -10,7 +10,9 @@
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.callPackage (import ./torrserver_pkg.nix) {}}/bin/torrserver -d /home/damima/.config/torrserver";
+      ExecStart = "${
+        pkgs.callPackage (import ./torrserver_pkg.nix) { }
+      }/bin/torrserver -d /home/damima/.config/torrserver";
       Restart = "on-failure";
       User = "damima";
       Group = "users";

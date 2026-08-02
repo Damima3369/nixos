@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
-    environment.systemPackages = with pkgs; [
-        qbittorrent
-    ];
+  environment.systemPackages = with pkgs; [
+    qbittorrent
+  ];
 
-    networking.firewall = {
-        allowedTCPPorts = [ 51471 ];
-        allowedUDPPorts = [ 51471 ];
-    };
+  networking.firewall = {
+    allowedTCPPorts = [ 51471 ];
+    allowedUDPPorts = [ 51471 ];
+  };
 }

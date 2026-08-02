@@ -1,5 +1,4 @@
-{ config, pkgs, lib, ... }:
-
+{ lib, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -21,11 +20,13 @@
   boot.initrd.systemd.enable = true;
 
   # --- Память и Своп ---
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 32 * 1024;
-    priority = -10;         
-  }];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 32 * 1024;
+      priority = -10;
+    }
+  ];
   zramSwap = {
     enable = true;
     priority = 100;
@@ -34,7 +35,7 @@
 
   # --- Сетевые настройки ---
   networking.hostName = "acemagic-s1";
-  # networking.wireless.enable = true; 
+  # networking.wireless.enable = true;
   networking.networkmanager.enable = true;
 
   # --- Время и Локализация ---
@@ -85,10 +86,14 @@
   users.users.damima = {
     isNormalUser = true;
     description = "Дмитрий";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
     initialPassword = "damima";
   };
-  
+
   # --- Базовый софт ---
   programs.firefox.enable = true;
 
@@ -99,7 +104,10 @@
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
       sandbox = "relaxed";
       filter-syscalls = false;

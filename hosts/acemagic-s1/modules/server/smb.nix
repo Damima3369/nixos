@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 {
   services.samba.enable = true;
   #services.samba.settings.global.security = "user";
@@ -26,7 +26,7 @@
         "IPTOS_LOWDELAY"
         "SO_RCVBUF=1048576"
         "SO_SNDBUF=1048576"
-        ];
+      ];
       "read raw" = "yes";
       "write raw" = "yes";
       "strict locking" = "no";
@@ -54,7 +54,7 @@
       path = "/run/media/damima";
       browseable = "yes";
       writable = "yes";
-      "guest ok"= "yes";
+      "guest ok" = "yes";
       public = "yes";
       "create mask" = "0777";
       "directory mask" = "0777";
@@ -67,7 +67,7 @@
       browseable = "yes";
       writable = "yes";
       "guest ok" = "yes";
-      public= "yes";
+      public = "yes";
       "create mask" = "0777";
       "directory mask" = "0777";
       "force user" = "root";
@@ -88,6 +88,16 @@
   };
   users.users.damima.extraGroups = [ "samba" ];
   #systemd.tmpfiles.rules = [ "d /home/damima/shared 0775 damima samba - -" ];
-  networking.firewall.allowedTCPPorts = [ 137 138 139 445 ];
-  networking.firewall.allowedUDPPorts = [ 137 138 139 445 ];
+  networking.firewall.allowedTCPPorts = [
+    137
+    138
+    139
+    445
+  ];
+  networking.firewall.allowedUDPPorts = [
+    137
+    138
+    139
+    445
+  ];
 }
