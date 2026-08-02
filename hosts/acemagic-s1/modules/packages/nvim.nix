@@ -32,9 +32,10 @@
           ];
         };
         customRC = ''
+          lua << EOF
           -- Лидер-клавиши (должны быть объявлены первыми!)
           vim.g.mapleader = " "
-          vim.g.maplocalleader = "\\"
+          vim.g.maplocal_leader = "\\"
 
           -- Базовые настройки интерфейса
           local opt = vim.opt
@@ -110,6 +111,7 @@
               end
             end
           })
+          EOF
         '';
       };
     })
