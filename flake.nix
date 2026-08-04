@@ -28,6 +28,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    torrserver = {
+      url = "github:Damima3369/TorrServer";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -40,6 +44,7 @@
       apple-emoji,
       pineconemc,
       nix-index-database,
+      torrserver,
       ...
     }:
 
@@ -61,6 +66,8 @@
             {
               nixpkgs.overlays = [ pineconemc.overlays.default ];
             }
+
+            torrserver.nixosModules.default
 
             nix-index-database.nixosModules.nix-index
             {

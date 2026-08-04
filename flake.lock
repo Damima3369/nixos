@@ -196,7 +196,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pineconemc": "pineconemc",
         "plasma-manager": "plasma-manager",
-        "secret": "secret"
+        "secret": "secret",
+        "torrserver": "torrserver"
       }
     },
     "secret": {
@@ -213,6 +214,26 @@
         "ref": "refs/heads/main",
         "type": "git",
         "url": "ssh://git@github.com/Damima3369/nixos-secret.git"
+      }
+    },
+    "torrserver": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785826628,
+        "narHash": "sha256-03KfvG79Dk8WPW3Qwm9OOOJfeEUdZtUUeqDDv+mXgEM=",
+        "owner": "Damima3369",
+        "repo": "TorrServer",
+        "rev": "03ff33d99689621e012f9b888b7beb357c5d659c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Damima3369",
+        "repo": "TorrServer",
+        "type": "github"
       }
     }
   },
