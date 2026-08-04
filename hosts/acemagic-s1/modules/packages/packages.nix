@@ -20,7 +20,6 @@
     ./games.nix
     ./nvim.nix
     ./avahi.nix
-    ./mic.nix
   ];
 
   environment.systemPackages =
