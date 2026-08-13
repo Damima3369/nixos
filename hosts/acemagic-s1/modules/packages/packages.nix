@@ -75,4 +75,5 @@
       ];
     in
     stable ++ unstable;
+  services.flatpak.enable = true;
 }
