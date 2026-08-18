@@ -41,7 +41,6 @@
   # --- Время и Локализация ---
   time = {
     timeZone = "Europe/Moscow";
-    hardwareClockInLocalTime = true;
   };
   services.timesyncd.enable = true;
 
