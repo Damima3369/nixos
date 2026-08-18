@@ -16,7 +16,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true;
   boot.kernel.sysctl."kernel.sysrq" = 1;
-  services.ntp.enable = true;
+  services.ntp.enable = false;
   boot.initrd.systemd.enable = true;
 
   # --- Память и Своп ---
@@ -42,7 +42,8 @@
   time = {
     timeZone = "Europe/Moscow";
   };
-  services.timesyncd.enable = true;
+  services.timesyncd.enable = false;
+  services.chrony.enable = true;
 
   i18n.defaultLocale = "ru_RU.UTF-8";
   i18n.extraLocaleSettings = {
