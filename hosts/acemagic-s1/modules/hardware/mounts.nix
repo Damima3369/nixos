@@ -31,6 +31,7 @@
         "noatime"
         "compress=zstd:3"
         "noauto"
+        "nodatacow"
         "x-systemd.automount"
       ];
     };
